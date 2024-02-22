@@ -1,101 +1,263 @@
 *{
-    margin: 500;
     padding: 0;
+    margin: 0;
     box-sizing: border-box;
-    text-transform: uppercase;
 }
 body{
-    background-image: linear-gradient(260deg,rgb(105, 195, 255), rgb(177, 213, 243));
+    
+    background: linear-gradient(260deg,#f1f1f1,#f1f1f1);
+    filter: blur(30);
+    font-size: 1.4rem !important;
+    color: rgb(36, 32, 32) !important;
 }
-.block{
-    opacity: 90%;
-    border-radius: 10px;
+
+button{
+    outline: none;
+}
+.container1{
+    display: flex;
+    /* justify-content: space-between; */
+    min-height: 76vh;
+    margin-top: 1.3rem;
+}
+
+.left{
+    width: 30%;
+    margin-left: 40px;
+    margin-top: 10px; 
+    display: flex;
     flex-direction: column;
-    box-shadow:8px 10px 8px rgb(34, 34, 34);
-    border-style: solid;
-    border-width: 10px;
-    border-color: rgb(33 71 112);
-    border-spacing: 20px;
-    background-color: rgb(255, 255, 255);
-
+    height: 70vh;
+    justify-content: space-around;
+    /* align-items: center; */
 }
-.user_detail{
-    text-align: center;
-    margin: 20px;
-    margin-top: 0;
-    color: rgb(0, 0, 0);
-}
-
-
-.user_detail p{
-    font-size: 20px;
-    font-weight: bold;
-    color: rgb(11, 27, 44);
-    text-shadow: 1px 1px 2px rgb(107, 144, 247);
-    letter-spacing: 1px;
-    
-}
-.user_detail h1{
-    color: rgb(13, 39, 66);
-    text-shadow: 2px 2px 4px rgb(107, 144, 247);
-}
-
-hr{
-    border-color: black;
-    
-}
-.list{
-    opacity: 90%;
-    border-radius: 10px;
-    flex-direction: column;
-    box-shadow:8px 10px 8px rgb(34, 34, 34);
-    border-style: solid;
-    border-width: 10px;
-    border-color: rgb(33 71 112);
-    border-spacing: 20px;
-    background-color: rgb(255, 255, 255);
-    margin-top: 20px;
-    text-align: center;
-    
-}
-.list ul li{
-       
-    padding: 15px;
-    background-color:white;
-    list-style: none;
-}
-.list ul a{
-    text-decoration: none;
-    font-size: 25px;
-    font-weight: bold;
-    color:black;
-    text-shadow: 1px 1px 2px rgb(255, 255, 255);
-    
-}
-.container{
-    position: absolute;
-    margin-bottom: 30px;
-    height: 50vh;
-    font-weight: 700;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-95%);
-    width: 500px;
-}
-.close{
-
-    float: right;
-    display:block;
-    width:30px;
-    height:30px;
-    border-radius:50%;
-    border-color: white;
+.profile-card{
+    display: flex;
+    justify-content: space-between;
     background-color: white;
-    font-weight: bolder;
-    font-size: larger;
+    align-items: center;
+    padding: 0.8rem;
+    width: 75%;
+    position: relative;
+    box-shadow: 0 2px 5px rgba(47, 65, 226, 0.4);
 }
-.close a{
+.profile-img{
+    height: 60px;
+    border: 2px solid grey;
+    border-radius: 50%;
+    margin-left: 10px;
+}
+.card-name{
+    position: absolute;
+    left: 37%;
+    line-height: 27px;
+}
+a{
+    color: white;
+}
+a:hover{
+    color: white;
     text-decoration: none;
-    color:red;
+}
+.logOut{
+    height: 10vh;
+    width: 100%;
+    border: none;
+    outline: none;
+    background: white;
+}
+.logOut:hover{
+    color: red;
+
+}
+.name{
+    color: rgb(11, 27, 44);
+    font-weight: 600;
+    font-size: 16px;
+}
+.sidebar,.log-out{
+   display: flex;
+   flex-direction: column;
+   box-shadow: 0px 2px 5px rgba(47, 65, 226, 0.4);
+   width: 75%;
+}
+.side-opt,.logOut{
+    padding: 0.8rem;
+    text-decoration: none;
+    border-bottom: 0.2px solid rgba(184, 184, 184);
+    text-align: center;
+    color: rgb(47, 65, 226);
+    font-weight: 500;
+    background-color: white;
+}
+.logOut{
+    color: red;
+}
+.side-opt:hover{
+    background-color:rgb(155, 216, 245);
+    color: rgb(3, 5, 29);
 }
 
+.right{
+    height: 65vh;
+    width: 70%;
+    margin-top: 27px;
+    margin-right: 50px;
+    box-shadow: 0px 2px 6px rgba(47, 65, 226);
+    transition: 0.5s;
+    /* display: none; */
+    background-color: white;
+}
+.heading{
+    text-align: center;
+    padding-top: 20px;
+    font-weight: 600;
+    color: rgb(25, 84, 148);
+    font-size: 25px;
+}
+.details{
+    display: flex;
+    justify-content: space-around;
+    margin-top: 30px;
+}
+.info{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 50vh;
+}
+.info-box{
+    display: flex;
+    padding: 0.7rem 1rem;
+    border: 0.2px solid rgba(214, 214, 214, 0.788);
+    align-items: center;
+}
+.label{
+    font-size: 17px;
+    color: grey;
+    margin-right: 15px;
+}
+.field{
+    color: rgba(47, 65, 226, 0.192);
+    font-weight: 500;
+    border: none;
+    width: 100%;
+    outline: none;
+}
+input[type=number]::-webkit-inner-spin-button{
+    -webkit-appearance: none;
+    margin: 0;
+}
+.profile-picture{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+.profile-pic{
+    border: 4px solid grey;
+    border-radius: 50%;
+    height: 12rem;
+    margin-top: -20px;
+}
+
+img {
+    float: left;
+    margin-top: -3px;
+}
+
+.hist {
+    margin-top: 20px;
+}
+
+center {
+    margin-top: -90px;
+    margin-left: -200px;
+    color: #43C47B;
+}
+
+.inv {
+    margin-left: 600px;
+    margin-top: -30px;
+}
+
+
+
+.right1 {
+    display: none;
+    height: 81vh;
+    width: 65%;
+    margin-top: 27px;
+    margin-right: 40px;
+    box-shadow: 0px 2px 6px rgb(0, 0, 0, 0.192);
+    position: relative;
+    padding: 1rem;
+    overflow-y: scroll;
+}
+
+h2 {
+    color: #43C47B;
+}
+
+.btn {
+    color: #fff;
+    background-color: #43C47B;
+    text-align: center;
+    padding: 5px;
+    border-radius: 5px;
+    margin-top: -10px;
+    margin-left: 740px;
+    border: #43C47B;
+    width: 100px;
+    height: 40px;
+}
+
+.btn:hover {
+    background-color: rgb(11, 27, 44);
+}
+
+
+
+@media (min-width: 0px) and (max-width: 738px) {
+    .container1 {
+        flex-direction: column-reverse; /* Reverse the flex direction for smaller screens */
+    }
+
+    .left {
+        order: 2; /* Change the order to 2 on smaller screens */
+        width: 100%; /* Full width for left part */
+        margin-left: 10px; /* Adjust margin for spacing */
+        margin-right: 10px; /* Adjust margin for spacing */
+    }
+    .profile-card{
+        visibility: none;
+        display: none   ;
+    }
+    .right {
+        order: 3; /* Change the order to 1 on smaller screens */
+        width: 100%; /* Full width for right part */
+        margin-left: 10px; /* Adjust margin for spacing */
+        margin-right: 10px; /* Adjust margin for spacing */
+    }
+
+    .right1 {
+        display: block; /* Show the right part */
+    }
+    .profile-pic{
+        height: 50px;
+        width: 50px;
+    }
+    .sidebar,.log-out{
+        width: 100%;
+     }
+     .profile-card{
+        width: 100%;
+     }
+     p{
+        flex-wrap: wrap;
+     }
+}
+
+.forms{
+    display: none !important;
+
+}

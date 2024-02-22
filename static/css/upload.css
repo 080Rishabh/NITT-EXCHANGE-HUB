@@ -1,26 +1,24 @@
 body{
     background-position: 50%;
-    background: linear-gradient(260deg,rgb(105, 195, 255), rgb(177, 213, 243));
+    /* background: #925c5c; */
+    background: linear-gradient(260deg,#f1f1f1,#f1f1f1);
     filter: blur(30);
+    color: rgb(13, 14, 77) !important;
 }
-
-
+  
 .form{
     opacity: 85%;
     margin-left:12%;
     margin-right: 12%;
     margin-top: 5%;
     margin-bottom: 8%;
-    border-style: solid;
-    border-width: 10px;
-    border-color: rgb(33 71 112);
+    
+    box-shadow: 0px 2px 6px rgba(47, 65, 226);
     background-color: rgb(255, 255, 255);
     padding: 20px 50px;
     border-radius: 10px;
+    font-weight: bold;
     font-size: 25px;
-    font-weight: 500;
-    font-style:normal;
-    font-family:Verdana, Geneva, Tahoma, sans-serif;
     border-spacing: 20px;
 }
 

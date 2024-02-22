@@ -18,9 +18,9 @@ api=Api(app)
 app.config['SECRET_KEY']='8efde650d0e727ef697bb75adb2a114a'
 app.config['SQLALCHEMY_DATABASE_URI']='sqlite:///userData.db'
 app.config['SQLALCHEMY_BINDS']={
-    'product':'sqlite:///product.db'
+    'product':'sqlite:///product.db',
+    'feedback': 'sqlite:///feedback.db'
 }
-
 
 UPLOAD_FOLDER = 'static/uploads/'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
@@ -70,15 +70,23 @@ class Product(db.Model):
     title=db.Column(db.String(50))
     desc=db.Column(db.String(500))
     cat=db.Column(db.String(30))
-    price=db.Column(db.Integer)
+    price=db.Column(db.Integer) 
     pic=db.Column(db.String(150))
     rm=db.Column(db.Integer,default=0)
 
 
+class Feedback(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    rating = db.Column(db.Integer)
+    comments = db.Column(db.Text)
+
+# Create the database tables including the Feedback table
+db.create_all()
 
 
 from routes import *
 from category import *
 
-if __name__=="__main__":
-    app.run(debug=True)
+# if __name__=="__main__":
+#     app.run(debug=True)
+

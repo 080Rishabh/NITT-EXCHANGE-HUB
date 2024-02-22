@@ -2,14 +2,14 @@
     margin: 0;
     padding: 0;
     box-sizing : border-box;
-    
+    font-size: 1.4rem;
     color: rgb(0, 0, 0);
 }
 
 .body{
     display: block;
    
-    background-color: #cce8ee;
+    background-color: #f1f1f1;
     background-repeat: no-repeat;
     background-size:100% 100vh;
     height: 100vh;
@@ -32,3 +32,31 @@
     
 }
 
+
+
+.whatsapp-button {
+            background-color: #25d366;
+            /* WhatsApp green color */
+            color: #ffffff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            display: inline-block;
+        }
+        a{
+            font-size: 1.4rem;
+        }
+        /* Add margin between the icon and text */
+        .whatsapp-button i {
+            margin-right: 5px;
+        }
+
+        .box {
+            background-color: #f1f1f1;
+            padding: 10px;
+            border-radius: 10px;
+            margin-bottom: 5px;
+            box-shadow: 2px blue;
+        }

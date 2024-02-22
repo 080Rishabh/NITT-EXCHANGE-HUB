@@ -1,6 +1,6 @@
 from forms import RegistrationForm,LoginForm
 from flask import render_template,flash,redirect,url_for,request
-from app import db,bcrypt,app,User,Product
+from app import db,bcrypt,app,User,Product, Feedback
 from flask_login import current_user,login_required,logout_user,login_user
 import os
 from werkzeug.utils import secure_filename
@@ -9,9 +9,9 @@ from flask_mail import Mail,Message
 import random
 import re
 
-regex=r'\b([0-9]{9})+@nitt.edu\b'
+regex = r'\b(\d+|[a-zA-Z]+)@nitt.edu\b'
 regex2=r'^[a-z0-9](\.?[a-z0-9]){5,}@g(oogle)?mail\.com$'
-ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
+ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif','webp'])
 
 def allowed_file(filename):
  return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
@@ -21,7 +21,7 @@ mail = Mail(app) # instantiate the mail class
 app.config['MAIL_SERVER']='smtp.gmail.com'
 app.config['MAIL_PORT'] = 465
 app.config['MAIL_USERNAME'] = 'sendotptowebmail@gmail.com'
-app.config['MAIL_PASSWORD'] = 'pideacsmjicujeyj'
+app.config['MAIL_PASSWORD'] = 'vzsrafuwwjdmdtyq'
 app.config['MAIL_USE_TLS'] = False
 app.config['MAIL_USE_SSL'] = True
 mail = Mail(app)
@@ -100,15 +100,18 @@ def validation():
         user=User.query.filter_by(webmail=webmail).first()
         global random_otp
         random_otp=find_otp()
+        
+        # print(random_otp)
         if user is not None:
             flash('This Webmail Id already Exists')
         elif(re.fullmatch(regex,webmail) or re.fullmatch(regex2,webmail)):
             msg=Message(
-                'Welcome to Co-oLX',
+                'Welcome to NITT Exchanage Hub',
                 sender ='sendotptowebmail@gmail.com',
                 recipients = [webmail]
                )
-            msg.body="Your OTP is " + str(random_otp)
+            print(random_otp)
+            msg.body = f"Hello,\n\nWelcome to NITT EXCHANGE HUB! We're excited to have you on board.\n\nTo ensure the security of your account, we've generated a one-time password (OTP) for you. Please use the following OTP to complete your registration:\n\nYour OTP: {random_otp}\n\nIf you did not attempt to register on NITT EXCHANGE HUB, please ignore this email.\n\nThank you for choosing NITT EXCHANGE HUB. If you have any questions or need assistance, feel free to reach out to our support team at [sendotptowebmail@gmail.com].\n\nBest regards,\nThe NITT EXCHANGE HUB Team"
             mail.send(msg)
             return render_template('otp_check.html',webmail=webmail)
         else:
@@ -121,6 +124,8 @@ def otp_validation():
         user_otp=request.form['user_otp']
         webmail=request.form['webmail']
         print(str(random_otp)==user_otp)
+        print(random_otp)
+        print(user_otp)
         if(str(random_otp) == user_otp):
             return redirect('/register/'+webmail)
         else:
@@ -132,6 +137,8 @@ def otp_validation():
 @login_required
 def account():
     return render_template('account.html',post=current_user)
+
+
 
 @app.route('/logout')
 @login_required
@@ -157,6 +164,7 @@ def feedback():
     return render_template('feedback.html')
 
 
+
 @app.route('/uploader',methods=['GET','POST'])
 @login_required
 def uploader():
@@ -178,35 +186,33 @@ def uploader():
        db.session.add(newFile)
        db.session.commit()
     #    flash('File successfully uploaded ' + file.filename + ' to the database!')
-       return redirect(url_for('home'))
+
+       return redirect(url_for('upload'))
     # else:
     #    flash('Invalid Uplaod only txt, pdf, png, jpg, jpeg, gif') 
-    return redirect(url_for('home'))
+    # return redirect(url_for('upload'))
 
 
 
 
-@app.route('/search',methods=['GET','POST'])
+@app.route('/search', methods=['GET', 'POST'])
 @login_required
 def search():
-    t=random.random()
-    sdata=request.form['search']
-    data='%'+sdata+'%'
-    P=Product.query.with_entities(Product.id).filter(Product.title.like(data)).all()
-    P.reverse()
-    p=dict()
-    for i in P:
-        post=Product.query.filter_by(id=i[0]).first()
-        if(post.rm==0):
-            a=[]
-            a.append(post.title)
-            a.append(post.desc)
-            a.append(post.price)
-            pi=post.pic
-            picname='uploads/'+pi
-            p[picname]=a
-    l=len(p)    
-    return render_template('searchres.html',prod=p,l=l,t=t)
+    if request.method == 'POST':
+        t = random.random()
+        sdata = request.form['search']
+        data = f'%{sdata}%'
+        P = Product.query.with_entities(Product.id).filter(Product.title.like(data)).all()
+        P.reverse()
+        p = {}
+        for i in P:
+            post = Product.query.filter_by(id=i[0]).first()
+            if post.rm == 0:
+                a = [post.title, post.desc, post.price]
+                picname = f'uploads/{post.pic}'
+                p[picname] = a
+        l = len(p)
+        return render_template('searchres.html', prod=p, l=l, t=t)
 
 
 @app.route('/details/<picid>',methods=['GET','POST'])
@@ -226,7 +232,7 @@ def details(picid):
     a.append(p.desc)
     a.append(p.cat)
     
-    return render_template('details.html',t=a[0],p=a[1],u=a[2],c=a[3],d=a[4],e=a[5],des=a[6],pici=pic,ca=a[7])
+    return render_template('details.html',t=a[0],p=a[1],u=a[2],c=a[3],d=a[4],e=a[5],des=a[6],pici=pic,ca=a[7],post=current_user)
 
 
 @app.route('/list')
@@ -240,6 +246,7 @@ def list():
         if(p1.rm==0):
             a=[]
             a.append(p1.title)
+            a.append(p1.desc)
             a.append(p1.price)
             u=p1.pic
             picid='uploads/'+u
@@ -248,11 +255,24 @@ def list():
     return render_template('list.html',prod=prod)
         
 
-
-@app.route('/remove/<id>')
-@login_required
-def remove(id):
-    p=Product.query.filter_by(id=id).first()
+@app.route('/remove/<picid>',methods=['GET','POST'])
+@login_required 
+def remove(picid):
+    p=Product.query.filter_by(pic=picid).first()
     db.session.delete(p)
     db.session.commit()
-    return redirect(url_for('home'))
+    return redirect(url_for('list'))
+
+
+
+@app.route('/submit_feedback', methods=['POST'])
+def submit_feedback():
+    rating = int(request.form.get('rate'))
+    comments = request.form.get('comments')
+
+    feedback_entry = Feedback(rating=rating, comments=comments)
+    db.session.add(feedback_entry)
+    db.session.commit()
+
+    return redirect(url_for('feedback'))
+

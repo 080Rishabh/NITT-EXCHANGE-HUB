@@ -1,0 +1,10 @@
+python -m venv <name>  // to create virtual env
+
+Set-Executionpolicy unrestricted -scope process
+.\env\Scripts\activate       // activate virtual env
+
+pip install -r requirement.txt
+
+python run.py
+
+

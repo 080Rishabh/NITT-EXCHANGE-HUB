@@ -1,7 +1,0 @@
-flask-socketio
-flask
-flask-sqlalchemy
-flask-bcrypt
-flask-login
-flask-restful
-flask-wtf
