@@ -1,0 +1,27 @@
+{% include 'header1.html' %}
+<title>NEH | SPECIFIC CATEGORY</title>
+<link rel="stylesheet" href="static/css/hm.css">
+{% include 'header2.html' %}
+
+{% include 'navbar.html' %}
+
+
+<!-- carousal -->
+<!-- deals -->
+<br>
+<div class="alert alert-primary bar" role="alert">
+    Category Specified :- {{cat_passed}}
+
+</div>
+<div class="container">
+    {% for pic,array in prod.items() %}
+    <div class="card">
+        {% include 'card.html' %}
+    </div>
+    {% endfor %}
+</div>
+</body>
+
+{% include 'footer.html' %}
+
+</html>

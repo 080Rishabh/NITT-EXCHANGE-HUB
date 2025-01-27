@@ -1,0 +1,27 @@
+{% include 'header1.html' %}
+    <title>NEH | SEARCH</title>
+    <link rel="stylesheet" href="static/css/hm.css">
+    {% include 'header2.html' %}
+    {% include 'navbar.html' %}
+    
+
+    <!-- carousal -->
+    <!-- deals -->
+    <br>
+    <div class="alert alert-primary" role="alert">
+        About {{l}} results ({{t}} seconds)
+      </div>
+    <div class="container" >
+        {% for pic,array in prod.items() %}
+        <div class="card" style="border-radius: 20px; background-color: #f1f1f1;">
+            {% include 'card.html' %}
+        </div>
+    {% endfor %}
+    </div>
+</body>
+
+{% include 'footer.html' %}
+
+
+
+</html>

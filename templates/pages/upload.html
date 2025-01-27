@@ -1,0 +1,71 @@
+{% include 'header1.html' %}
+    <title>NEH | UPLOAD ITEM</title>
+    <link rel="stylesheet" href="static/css/upload.css">
+    {% include 'header2.html' %}
+    {% include 'navbar.html' %}
+    
+    <form action="{{url_for('uploader')}}" method="post" enctype="multipart/form-data">
+    <div class="form">
+        <div class="">
+            <h1 access="false" id="control-9454635">Enter your product's detail:</h1></div><hr style="height:5px; width:80%; color:black;" ><br>
+        <div class="label">
+            <label for="title" class="formbuilder-text-label">Title<span class="formbuilder-required">*</span></label>
+            <input type="text" placeholder="Name of your product" class="form-control" name="title" access="false" maxlength="30" id="title" required="required" aria-required="true">
+        </div><br>
+        <div class="label">
+            <label for="descr" class="formbuilder-textarea-label">Description</label>
+            <textarea type="textarea" placeholder="Describe your product" class="form-control" name="descr" access="false" maxlength="300" rows="5" id="descr"></textarea>
+        </div><br>
+        <div class="label">
+            <label for="category" class="formbuilder-select-label">Select category<span class="formbuilder-required">*</span></label>
+            <select class="form-control" name="category" id="category" required="required" aria-required="true">
+                <option disabled="null" selected="null">Choose one of the category</option>
+                <option value="books" id="category-0">Books/Notes</option>
+                <option value="cycle" id="category-1">Cycle</option>
+                <option value="electronics" id="category-2">Electronics</option>
+                <option value="appliances" id="category-3">Appliances</option>
+                <option value="lab" id="category-4">Lab Equipment</option>
+                <option value="sports" id="category-5">Sports</option>
+                <option value="other" id="category-6">Other</option>
+            </select>
+            <div id="other-category" style="display: none;">
+                <br>
+                <label for="other-category-text">Specify other category:</label>
+                <input type="text" id="other-category-text" class="form-control" name="other-category-text">
+            </div>
+        </div><br>
+        <div class="label">
+            <label for="price" class="formbuilder-number-label">Price<span class="formbuilder-required">*</span></label>
+            <input type="number" placeholder="0" class="form-control" name="price" access="false" min="0" step="10" id="price" required="required" aria-required="true">
+        </div><br>
+        <div class="label">
+            <label for="photo" class="formbuilder-file-label">Image Upload<span class="formbuilder-required">*</span></label>
+            <input type="file" placeholder="upload photos" class="form-control" name="photo" access="false" multiple="false" id="photo" required="required" aria-required="true">
+        </div><br>
+        <div class="center_button">
+            <input  class="btn-primary" style="font-size: 18px; border-radius: 5px; padding: 10px;" type="submit" value="Add Product">
+    </div>
+       </div>
+    </div>
+</form>
+    <!-- <script >
+        function add()
+        {
+            window.alert("Product added Successfully");
+            
+        }
+</script> -->
+</body>
+
+
+{% include 'footer.html' %}
+<script>
+    document.getElementById('category').addEventListener('change', function() {
+        if (this.value === 'other') {
+            document.getElementById('other-category').style.display = 'block';
+        } else {
+            document.getElementById('other-category').style.display = 'none';
+        }
+    });
+</script>
+</html>

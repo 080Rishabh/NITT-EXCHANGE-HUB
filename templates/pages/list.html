@@ -1,0 +1,32 @@
+{% include 'header1.html' %}
+
+    <title>NEH | HOME</title>
+    <link rel="stylesheet" href="static/css/hm.css">
+    {% include 'header2.html' %}
+
+    {% include 'navbar.html' %}
+
+    <!-- carousal -->
+    <!-- deals -->
+    <br>
+    <div class="alert alert-primary bar" role="alert">
+
+
+<!-- roll number pass -->
+        LISTED PRODUCTS OF  :- {{current_user.username}}
+        
+      </div>
+    <div class="container" >
+    {% for pic,array in prod.items() %}
+        <div class="card">
+            {% include 'card.html' %}
+            <a href="{{url_for('remove',picid=pic.split('/')[1])}}" style="text-decoration: none;">
+                <button class="btn btn-danger btn-lg btn-block">REMOVE</button>
+            </a>
+        </div>
+    {% endfor %}
+    </div>
+</body>
+
+{% include 'footer.html' %}
+</html>

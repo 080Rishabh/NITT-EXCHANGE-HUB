@@ -1,0 +1,113 @@
+{% include 'header1.html' %}
+<title>NEH | PRODUCT ACCOUNT</title>
+<link rel="stylesheet" href="{{url_for('static',filename='css/account.css')}}">
+{% include 'header2.html' %}
+
+
+{% include 'navbar.html' %}
+<main class="container1">
+    <section class="left">
+        <div class="profile-card">
+            <img src="{{url_for('static', filename = 'image/profile_blue.png')}}" alt="" class="profile-img">
+            <div class="card-name">
+                <p class="hello">Hello</p>
+                <p class="name">{{post.username}}</p>
+            </div>
+        </div>
+        <div class="sidebar">
+            <a href="{{url_for('list')}}" class="personal-info side-opt" id="ph">
+                <li> YOUR LISTED PRODUCT</li>
+            </a>
+            <a href="{{url_for('upload')}}" class="personal-info side-opt" id="ph">
+                <li>ADD PRODUCT &nbsp;</li>
+            </a>
+
+        </div>
+        <div class="log-out">
+
+            <a href="{{url_for('logout')}}" style="text-align: center; text-decoration: none; "><button class="logOut"
+                    style="font-size: 18px; background-color: red; color: white;">Logout</button></a>
+
+        </div>
+        <div class="log-out">
+
+                <button class="logOut"
+                        style="font-size: 18px; background-color: red; color: white; text-align: center;"
+                        onclick="showAlert()">Delete My Account</button>
+           
+        </div>
+        
+    </section>
+    <section class="right">
+        <p class="heading">Personal Information</p>
+
+        <div class="details">
+            <div class="info">
+                <form action="{{ url_for('update_profile') }}" method="post">
+                    
+                    <div class="Email info-box">
+                        <!-- <p>{{ post.webmail }}</p> -->
+                        <p class="label">Webmail</p>
+                        <div class="Email ">
+                            <p>{{ post.webmail }}</p>
+                            <input type="hidden" name="webmail" value="{{ post.webmail }}">
+                        </div>
+
+                    </div>
+                    <div class="person-name info-box">
+                        <p class="label">Name</p>
+                        <input type="text" class="form-control personName field" name="username" value="{{ post.username }}">
+                    </div>
+                    <div class="mobile info-box">
+                        <p class="label">Mobile</p>
+                        <input type="text" class="form-control mobile-no field" name="mobile" value="{{ post.mobile }}">
+                    </div>
+                    <div class="address info-box">
+                        <p class="label">Address</p>
+                        <input type="text" class="form-control address-text field" name="address" value="{{ post.address }}">
+                    </div>
+                    
+                    <br>
+                    <button type="submit" class="btn-primary" style="font-size: 18px; border-radius: 5px; padding: 10px;" onclick="showMessage()">Update Profile</button>
+
+                </form>
+                
+            </div>
+            <div class="profile-picture">
+                <img src="{{url_for('static', filename = 'image/profile.svg')}}" alt="" class="profile-pic">
+                <!-- <button class="update" type="submit">Save Changes</button> -->
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- <section class="right1">
+                <a href="{{url_for('upload')}}"><li>ADD PRODUCT &nbsp;<img height="50px" width="50px" src="static/image/cart.jpg" alt=""></li></a><hr>
+            
+            </section> -->
+
+</main>
+
+
+</body>
+
+
+
+<script>
+    function showMessage() {
+        // Show a prompt with the message
+        alert("Profile updated successfully!");
+    }
+    function showAlert() {
+        if (confirm("Are you sure you want to delete your account?")) {
+            alert("Account deleted successfully");
+            // Redirect to the URL for removing the user
+            window.location.href = "{{url_for('remove_user', id=post.id)}}";
+        }
+    }
+</script>
+</html>
+
+
+

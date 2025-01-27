@@ -1,0 +1,112 @@
+{% include 'header1.html' %}
+    <title>NEH | PRODUCT DETAILS</title>
+    {% include 'header2.html' %}
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Add custom styles for the button */
+        .whatsapp-button {
+            background-color: #25d366;
+            /* WhatsApp green color */
+            color: #ffffff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            display: inline-block;
+        }
+        a{
+            font-size: 1.4rem;
+        }
+        /* Add margin between the icon and text */
+        .whatsapp-button i {
+            margin-right: 5px;
+        }
+
+        .box {
+            background-color: #f1f1f1;
+            padding: 10px;
+            border-radius: 10px;
+            margin-bottom: 5px;
+            box-shadow: 2px blue;
+        }
+    </style>
+
+</head>
+
+<body>
+    {% include 'navbar.html' %}
+
+
+
+    <!-- Page Content -->
+    <div class="container">
+
+        <!-- Portfolio Item Heading -->
+        <h1 class="my-4">Category :- {{ca|upper}} </h1>
+
+        <!-- Portfolio Item Row -->
+        <div class="row">
+
+            <div class="col-md-8">
+                <img class="img-fluid" src="{{url_for('static',filename=pici)}}" style="height: 70vh; width: 80%;"
+                    alt="">
+            </div>
+
+            <div class="col-md-4 ">
+                <div class="box">
+                    <h3 class="my-3" style="color: rgb(55, 14, 121);">Product Title :- {{t}}</h3>
+                    <h4 class="my-4" style="color: red;">Price : {{p}}</h4>
+                    <p>{{des}}</p>
+                </div>
+                <br>
+                <div class="box">
+                    <h3 class="my-3">Owner Details</h3>
+
+                    <p>
+                    <h5>Name :- {{u}}</h5>
+                    Course:- {{c}}<br>
+                    Hostel:- {{d}}<br>
+                    Contact:- {{e}}</p>
+                    <button class="whatsapp-button" onclick="sendWhatsAppMessage('{{e}}', '{{t}}', '{{p}}')">
+                        <i class="fab fa-whatsapp"></i> Want to Buy
+                    </button>
+                </div>
+            </div>
+
+        </div>
+        <!-- /.row -->
+
+
+
+    </div>
+    <!-- /.container -->
+
+
+ 
+{% include 'footer.html' %}
+</body>
+<script>
+    function sendWhatsAppMessage(phoneNumber, productTitle, productPrice) {
+        // Construct the WhatsApp message expressing interest in the product
+        var message = "Hi, I'm interested in your product uploaded on NITT Exchange Hub:\n" +
+            "Product Title: " + productTitle + "\n" +
+            "Price: " + productPrice + "\n\n" +
+            "My Details:\n" +
+            "Name: {{post.username}}\n" +
+            "Address: {{post.address}}\n" +
+            "Contact: {{post.mobile}}";
+
+        // URL encode the message
+        var encodedMessage = encodeURIComponent(message);
+
+        // Construct the WhatsApp message link
+        var whatsappLink = "https://wa.me/" + phoneNumber + "?text=" + encodedMessage;
+
+        // Redirect the user to the WhatsApp message
+        window.open(whatsappLink, '_blank');
+    }
+</script>
+
+</html>

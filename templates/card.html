@@ -1,0 +1,18 @@
+<div class="zoom">
+    <a href="{{url_for('details',picid=pic.split('/')[1])}}">
+        <img src="{{url_for('static',filename=pic)}}" class="card-img-top" alt="..." width="200px" height="200px" >
+    </a>
+</div>
+<div class="card-body" style="color: rgb(2, 2, 46);">
+    <a href="{{url_for('details',picid=pic.split('/')[1])}}">
+    <h5 class="card-title" style="font-weight: bolder;">{{array[0]}}</h5>
+</a>
+    <p class="card-text">
+        {% if array[1] | wordcount <= 20 %}
+            {{array[1]}}
+        {% else %}
+            {{ array[1] | truncate(80) }}
+        {% endif %}
+    </p>
+    <p class="card-text" style="font-weight: bolder; color: red;">Price:- {{array[2]}}</p>
+</div>

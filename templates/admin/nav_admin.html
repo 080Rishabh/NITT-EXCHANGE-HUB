@@ -1,0 +1,48 @@
+<style>
+  /* Custom styles for navbar */
+  .navbar-nav .nav-link {
+      font-weight: bold; /* Make text bold */
+      color: #313131 !important; /* Darker color for text */
+      font-size: large;
+  }
+  .navbar{
+    background-color: rgb(231, 228, 226) !important;
+  }
+  .nav-item:hover{
+    background-color: rgb(161, 163, 163);
+  }
+</style>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="/admin_dashboard" >NEH Admin Panel</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+          <a class="nav-link" href="/user_table">Users</a> 
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="/product_table">Products</a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="/pending_products">Pending_Products</a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="/feedback_table">Feedback</a>
+        </li>
+        
+      </ul>
+      <!-- Add new link here -->
+      <ul class="navbar-nav ml-auto"> <!-- Use ml-auto to align items to the right -->
+        
+        <li class="nav-item active">
+          <a class="nav-link" href="/home">NITT Exchange Hub         |     </a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="/logout">Logout</a> 
+        </li>
+      </ul>
+    </div>
+</nav>
