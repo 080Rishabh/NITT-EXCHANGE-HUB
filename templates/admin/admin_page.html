@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link rel="shortcut icon" href="{{ url_for('static', filename='image/fav.svg') }}" type="image/x-icon">
+  <style>
+    /* Custom styles */
+    body {
+      background-color: #f8f9fa;
+    }
+    .card-body {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .card-icon {
+      font-size: 3rem;
+    }
+    .card-title {
+      font-size: 1.5rem;
+    }
+    .list-group-item {
+      border: none;
+    }
+    .big-card {
+      height: 300px; /* Adjust height as needed */
+    }
+  </style>
+</head>
+<body>
+
+  {% include 'admin/nav_admin.html' %}
+
+  <div class="container-fluid mt-4">
+    <div class="row">
+      <div class="col-md-6 mb-4">
+        <div class="card big-card bg-primary text-white">
+          <div class="card-body">
+            <h5 class="card-title">Total Users</h5>
+            <h1 class="card-text text-center">{{ total_users }}</h1>
+            <i class="fas fa-users card-icon"></i>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 mb-4">
+        <div class="card big-card bg-success text-white">
+          <div class="card-body">
+            <h5 class="card-title">Total Products</h5>
+            <h1 class="card-text text-center">{{ total_products }}</h1>
+            <i class="fas fa-cube card-icon"></i>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 mb-4">
+        <div class="card bg-warning text-white">
+          <div class="card-body">
+            <h5 class="card-title">Average Rating</h5>
+            <h1 class="card-text text-center">{{ average_rating }} </h1>
+            <i class="fas fa-star card-icon"></i>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 mb-4">
+        <div class="card bg-info text-white">
+          <div class="card-body">
+            <h5 class="card-title">Total Feedbacks</h5>
+            <h1 class="card-text text-center">{{ total_feedbacks }}</h1>
+            <i class="fas fa-comment card-icon"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card mb-4">
+      <div class="card-header d-flex justify-content-between align-items-center">
+        <span>Recent Feedback Comments</span>
+        <a href="/feedback_table" class="btn btn-sm btn-outline-primary">View All Feedbacks</a>
+      </div>
+      <div class="card-body">
+        <ul class="list-group list-group-flush">  {% if recent_feedbacks %}
+            {% for feedback in recent_feedbacks %}
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+                <div>
+                  "{{ feedback.comments }}"  <br>
+                    </div>
+                <span class="badge bg-primary rounded-pill">
+                  {{ feedback.rating }} <i class="fa fa-star text-light"></i>  </span>
+              </li>
+            {% endfor %}
+          {% else %}
+            <li class="list-group-item text-muted">No recent feedback available.</li>
+          {% endif %}
+        </ul>
+      </div>
+    </div>
+    
+
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

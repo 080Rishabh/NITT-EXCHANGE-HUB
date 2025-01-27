@@ -88,10 +88,11 @@ a:hover{
     text-align: center;
     color: rgb(47, 65, 226);
     font-weight: 500;
+    font-size: 15px !important;
     background-color: white;
 }
 .logOut{
-    color: red;
+    color: rgb(250, 41, 41);
 }
 .side-opt:hover{
     background-color:rgb(155, 216, 245);
@@ -99,7 +100,7 @@ a:hover{
 }
 
 .right{
-    height: 65vh;
+    height: 70vh;
     width: 70%;
     margin-top: 27px;
     margin-right: 50px;

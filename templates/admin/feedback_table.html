@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="static/image/fav.svg" type="image/x-icon">
+  <title>Feedback Table</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style>
+    /* Custom styles */
+    body {
+      background-color: #f8f9fa;
+      font-family: Arial, sans-serif;
+    }
+    .table > thead > tr > th {
+      background-color: #007bff;
+      color: #fff;
+      text-align: center;
+      padding: 1rem;
+    }
+    .table > tbody > tr > td {
+      padding: 1rem;
+      vertical-align: middle;
+    }
+    .feedback-stars {
+      color: #ffc107;
+      font-size: 1.2rem;
+    }
+    .remove-button {
+      background-color: #dc3545;
+      color: #fff;
+      border-color: #dc3545;
+    }
+    .heading{
+      background-color: #61abfa;
+      margin-bottom: 0px ;
+      padding: 15px;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+  {% include 'admin/nav_admin.html' %}
+  <h2 class="text-center heading mb-2">User Feedbacks</h2>
+
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th scope="col">User</th>
+        <th scope="col">Rating</th>
+        <th scope="col">Comments</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody class="text-center">
+      {% for index in range(total_feedbacks) %}
+      <tr>
+        <td>{{ feedbacks[index].id }}</td>
+        <td> {{ "⭐" * feedbacks[index].rating }}</td>
+        <td>{{ feedbacks[index].comments }}</td>
+        <td ><a href="{{url_for('remove_feedback',id=feedbacks[index].id)}}" style="text-decoration: none;">
+          <button class="btn btn-danger btn-lg btn-block " style="width: 100%;">REMOVE</button>
+      </a></td>
+      </tr>
+      {% endfor %}
+      </tbody>
+      
+  </table>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

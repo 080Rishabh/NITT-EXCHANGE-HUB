@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="shortcut icon" href="static/image/fav.svg" type="image/x-icon">
+<title>Product Table</title>
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+<style>
+  /* Custom styles */
+  .custom-body {
+    font-family: Arial, sans-serif;
+    background-color: #fff; /* light grey background */
+  }
+
+  .custom-card {
+    background-color: rgb(246, 255, 255);
+    display: flex ;
+    width: 100%;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    overflow: hidden;
+  }
+
+  .custom-image-container {
+    width: 20%;
+  }
+
+  .custom-image {
+    width: 100%;
+    height: 315px; /* Adjusted height to maintain aspect ratio */
+  }
+
+  .custom-info-container {
+    width: 80%;
+    padding: 10px;
+    box-sizing: border-box;
+  }
+
+  .custom-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .custom-th, .custom-td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #dee2e6;
+  }
+
+  .custom-th {
+    background-color: #007bff; /* blue background */
+    color: #fff; /* white text */
+    width: 200px;
+  }
+  
+  .custom-btn-container {
+    margin-top: 20px;
+  }
+  .heading{
+      background-color: #61abfa;
+      margin-bottom: 0px ;
+      padding: 15px;
+      color: #fff;
+    }
+</style>
+</head>
+<body class="custom-body">
+
+{% include 'admin/nav_admin.html' %}
+
+<h2 class="text-center heading mb-2">Product Details</h2>
+
+{% for product in products %}
+<div class="custom-card">
+    <!-- Image container -->
+    <div class="custom-image-container">
+        <img class="custom-image" src="{{ url_for('static', filename='uploads/' + product.pic.split('/')[-1]) }}" alt="Product Image">
+    </div>
+    
+    <!-- Information container -->
+    <div class="custom-info-container">
+      <!-- Table -->
+      <table class="custom-table">
+        <tr>
+          <th class="custom-th">User ID</th>
+          <td class="custom-td">{{ product.uid }}</td>
+        </tr>
+        <tr>
+          <th class="custom-th">Product ID</th>
+          <td class="custom-td">{{ product.id }}</td>
+        </tr>
+        <tr>
+          <th class="custom-th">Title</th>
+          <td class="custom-td">{{ product.title }}</td>
+        </tr>
+        <tr>
+          <th class="custom-th">Description</th>
+          <td class="custom-td">{{ product.desc }}</td>
+        </tr>
+        <tr>
+          <th class="custom-th">Category</th>
+          <td class="custom-td">{{ product.cat }}</td>
+        </tr>
+        <tr>
+          <th class="custom-th">Price</th>
+          <td class="custom-td">{{ product.price }}</td>
+        </tr>
+      </table>
+      
+      <!-- Remove button -->
+      <a href="{{url_for('remove_product',id=product.id)}}" style="text-decoration: none;">
+        <button class="btn btn-danger btn-lg btn-block" >REMOVE</button>
+    </a>
+    </div>
+  </div>
+{% endfor %}
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

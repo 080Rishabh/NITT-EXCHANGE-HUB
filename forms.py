@@ -9,7 +9,7 @@ class RegistrationForm(Form):
     userName=StringField("Full Name",validators=[DataRequired(),Length(min=2,max=20)])
     emailId=StringField("Webmail")
     address=StringField("Hostel Address",validators=[DataRequired()])
-    course=SelectField("Course",choices=[('B.Tech','B.Tech'),('B.Arch','B.Arch'),('MCA','MCA'),('MBA','MBA'),('MA','MA'),('M.Arch','M.Arch'),('M.Sc','M.Sc'),('M.Tech','M.Tech'),('PhD','PhD')],validators=[DataRequired()])
+    course=SelectField("Department",choices=[('B.Tech','B.Tech'),('B.Arch','B.Arch'),('MCA','MCA'),('MBA','MBA'),('MA','MA'),('M.Arch','M.Arch'),('M.Sc','M.Sc'),('M.Tech','M.Tech'),('PhD','PhD'),('Staff/Faculty','Staff/Faculty')],validators=[DataRequired()])
     password=PasswordField("Password",validators=[DataRequired(),Length(min=8)])
     confirm_password=PasswordField("Confirm_Password",validators=[DataRequired(),EqualTo('password')])
     submit=SubmitField('Sign Up')

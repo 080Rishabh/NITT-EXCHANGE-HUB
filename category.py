@@ -18,7 +18,7 @@ def cyclecat():
     p=dict()
     for i in P:
         post=Product.query.filter_by(id=i[0]).first()
-        if(post.rm==0):
+        if(post.rm==1):
             a=[]
             a.append(post.title)
             a.append(post.desc)
@@ -26,7 +26,7 @@ def cyclecat():
             pi=post.pic
             picname='uploads/'+pi
             p[picname]=a
-    return render_template('category.html',prod=p,cat_passed='Cycle')
+    return render_template('pages/category.html',prod=p,cat_passed='Cycle')
 
 
 @app.route('/category_book')
@@ -36,7 +36,7 @@ def bookcat():
     p=dict()
     for i in P:
         post=Product.query.filter_by(id=i[0]).first()
-        if(post.rm==0):
+        if(post.rm==1):
             a=[]
             a.append(post.title)
             a.append(post.desc)
@@ -44,7 +44,7 @@ def bookcat():
             pi=post.pic
             picname='uploads/'+pi
             p[picname]=a
-    return render_template('category.html',prod=p,cat_passed='Books')
+    return render_template('pages/category.html',prod=p,cat_passed='Books')
 
 
 @app.route('/category_appliances')
@@ -54,7 +54,7 @@ def appcat():
     p=dict()
     for i in P:
         post=Product.query.filter_by(id=i[0]).first()
-        if(post.rm==0):
+        if(post.rm==1):
             a=[]
             a.append(post.title)
             a.append(post.desc)
@@ -62,7 +62,7 @@ def appcat():
             pi=post.pic
             picname='uploads/'+pi
             p[picname]=a
-    return render_template('category.html',prod=p,cat_passed='appliances')
+    return render_template('pages/category.html',prod=p,cat_passed='appliances')
 @app.route('/category_elect')
 def eleccat():
     P=Product.query.with_entities(Product.id).filter(Product.cat.like('electronics')).all()
@@ -70,7 +70,7 @@ def eleccat():
     p=dict()
     for i in P:
         post=Product.query.filter_by(id=i[0]).first()
-        if(post.rm==0):
+        if(post.rm==1):
             a=[]
             a.append(post.title)
             a.append(post.desc)
@@ -78,7 +78,7 @@ def eleccat():
             pi=post.pic
             picname='uploads/'+pi
             p[picname]=a
-    return render_template('category.html',prod=p,cat_passed='electronics')
+    return render_template('pages/category.html',prod=p,cat_passed='electronics')
 @app.route('/category_lab')
 def labcat():
     P=Product.query.with_entities(Product.id).filter(Product.cat.like('lab')).all()
@@ -86,7 +86,7 @@ def labcat():
     p=dict()
     for i in P:
         post=Product.query.filter_by(id=i[0]).first()
-        if(post.rm==0):
+        if(post.rm==1):
             a=[]
             a.append(post.title)
             a.append(post.desc)
@@ -94,7 +94,7 @@ def labcat():
             pi=post.pic
             picname='uploads/'+pi
             p[picname]=a
-    return render_template('category.html',prod=p,cat_passed='Lab Equip')
+    return render_template('pages/category.html',prod=p,cat_passed='Lab Equip')
 
 
 @app.route('/category_sports')
@@ -104,7 +104,7 @@ def sportcat():
     p=dict()
     for i in P:
         post=Product.query.filter_by(id=i[0]).first()
-        if(post.rm==0):
+        if(post.rm==1):
             a=[]
             a.append(post.title)
             a.append(post.desc)
@@ -112,7 +112,7 @@ def sportcat():
             pi=post.pic
             picname='uploads/'+pi
             p[picname]=a
-    return render_template('category.html',prod=p,cat_passed='SPORTS')
+    return render_template('pages/category.html',prod=p,cat_passed='SPORTS')
 
 
 @app.route('/category_other')
@@ -122,7 +122,7 @@ def othercat():
     p=dict()
     for i in P:
         post=Product.query.filter_by(id=i[0]).first()
-        if(post.rm==0):
+        if(post.rm==1):
             a=[]
             a.append(post.title)
             a.append(post.desc)
@@ -130,4 +130,4 @@ def othercat():
             pi=post.pic
             picname='uploads/'+pi
             p[picname]=a
-    return render_template('category.html',prod=p,cat_passed='Others')
+    return render_template('pages/category.html',prod=p,cat_passed='Others')
