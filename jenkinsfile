@@ -6,18 +6,18 @@ pipeline {
     stages {
         stage('Checkout Code') {
             steps {
-                echo "🚀 Checking out code from GitHub..."
+                echo "Checking out code from GitHub..."
                 git 'git@github.com:080Rishabh/NITT-EXCHANGE-HUB.git'
-                echo "✅ Code checkout complete!"
+                echo "Code checkout complete!"
             }
         }
         stage('Build Docker Image') {
             steps {
-                echo "🛠️ Building Docker image: $DOCKER_IMAGE"
+                echo "🛠️ Building Docker image: "
                 sh 'echo "Current workspace: $WORKSPACE"'
                 sh 'ls -l $WORKSPACE'  
                 // sh 'cd $WORKSPACE && docker build -t $DOCKER_IMAGE .'
-                echo "✅ Docker image built successfully!"
+                echo "Docker image built successfully!"
             }
         }
         stage('Login to Docker Hub') {
