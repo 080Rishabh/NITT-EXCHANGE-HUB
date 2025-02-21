@@ -28,7 +28,7 @@ pipeline {
             steps {
                 echo "Logging into Docker Hub as rishu28..."
                 withDockerRegistry([credentialsId: 'docker-hub-credentials', url: '']) {
-                    bat 'echo "Logging in..." && docker login -u rishu28 -p dockerrishu'
+                    bat 'docker login'
                 }
                 echo "Docker login successful!"
             }
