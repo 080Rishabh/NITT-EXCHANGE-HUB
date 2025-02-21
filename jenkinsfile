@@ -13,7 +13,7 @@ pipeline {
         }
         stage('Build Docker Image') {
             steps {
-                echo "🛠️ Building Docker image: $DOCKER_IMAGE..."
+                echo "🛠️ Building Docker image: $DOCKER_IMAGE"
                 sh 'echo "Current workspace: $WORKSPACE"'
                 sh 'ls -l $WORKSPACE'  
                 sh 'cd $WORKSPACE && docker build -t $DOCKER_IMAGE .'
