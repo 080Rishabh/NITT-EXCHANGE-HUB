@@ -6,30 +6,40 @@ pipeline {
     stages {
         stage('Checkout Code') {
             steps {
+                echo "🚀 Checking out code from GitHub..."
                 git 'git@github.com:080Rishabh/NITT-EXCHANGE-HUB.git'
+                echo "✅ Code checkout complete!"
             }
         }
         stage('Build Docker Image') {
             steps {
+                echo "🛠️ Building Docker image: $DOCKER_IMAGE..."
                 sh 'docker build -t $DOCKER_IMAGE .'
+                echo "✅ Docker image built successfully!"
             }
         }
         stage('Login to Docker Hub') {
             steps {
+                echo "🔐 Logging into Docker Hub as rishu28..."
                 withDockerRegistry([credentialsId: 'docker-hub-credentials', url: '']) {
                     sh 'docker login -u rishu28 -p $(cat /run/secrets/docker-hub-credentials)'
                 }
+                echo "✅ Docker login successful!"
             }
         }
         stage('Push to Docker Hub') {
             steps {
+                echo "📤 Pushing Docker image to Docker Hub..."
                 sh 'docker push $DOCKER_IMAGE'
+                echo "✅ Docker image pushed successfully!"
             }
         }
         stage('Deploy to Minikube') {
             steps {
+                echo "🚢 Deploying application to Minikube..."
                 sh 'kubectl apply -f kubernetes/deployment.yaml'
                 sh 'kubectl apply -f kubernetes/service.yaml'
+                echo "✅ Deployment successful!"
             }
         }
     }
