@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        DOCKER_IMAGE = "rishu28/nitt-exchange-hub:latest"
+        DOCKER_IMAGE = "rishu28/nitt-exchange-hub"
     }
     stages {
         stage('Checkout Code') {
