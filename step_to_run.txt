@@ -1,10 +1,12 @@
-python -m venv <name>  // to create virtual env
+download python 3.10
+
+python -m venv env  
 
 Set-Executionpolicy unrestricted -scope process
-.\env\Scripts\activate       // activate virtual env
+.\env\Scripts\activate       
 
-pip install -r requirement.txt
+pip install -r requirements.txt
 
-python run.py
+python app.py
 
 

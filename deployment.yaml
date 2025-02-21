@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nitt-exchange-hub
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nitt-exchange-hub
+  template:
+    metadata:
+      labels:
+        app: nitt-exchange-hub
+    spec:
+      containers:
+        - name: nitt-exchange-hub
+          image: rishu28/nitt-exchange-hub:latest  # Minikube ke local image ka naam
+          ports:
+            - containerPort: 5000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nitt-exchange-hub-service
+spec:
+  selector:
+    app: nitt-exchange-hub
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 5000
+  type: NodePort

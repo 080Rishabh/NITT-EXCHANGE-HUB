@@ -1,0 +1,31 @@
+curl -LO "https://dl.k8s.io/release/v1.27.0/bin/windows/amd64/kubectl.exe"
+kubectl version --client
+
+curl -LO "https://storage.googleapis.com/minikube/releases/latest/minikube-windows-amd64.exe"
+Is file ka naam minikube.exe rakho aur C:\Windows\System32 me move kar do.
+minikube version
+
+
+minikube start --driver=docker
+minikube status
+
+
+minikube docker-env
+
+
+create deployment.yaml
+
+kubectl apply -f deployment.yaml
+
+
+minikube service nitt-exchange-hub-service --url
+
+
+minikube stop
+minikube start
+
+
+minikube delete
+
+
+minikube service nitt-exchange-hub-service --url  
