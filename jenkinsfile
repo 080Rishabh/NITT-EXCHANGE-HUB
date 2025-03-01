@@ -39,12 +39,6 @@ pipeline {
                 echo "Deployment successful!"
             }
         }
-        stage('Port Forwarding') {
-            steps {
-                echo "Starting port forwarding..."
-                bat "start /B kubectl port-forward svc/nitt-exchange-hub-service 80:80"
-                echo "Port forwarding started!"
-            }
-        }
+    
     }
 }
