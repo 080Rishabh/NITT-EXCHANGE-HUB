@@ -36,18 +36,18 @@ pipeline {
                 }
             }
         }
-        stage('Login to Docker Hub') {
-            steps {
-                script {
-                    withCredentials([usernamePassword(credentialsId: 'docker-hub-credentials', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
-                        bat '''
-                        echo Logging in...
-                        echo %DOCKER_PASS% | docker login -u %DOCKER_USER% --password-stdin
-                        '''
-                    }
-                }
-            }
-        }
+        // stage('Login to Docker Hub') {
+        //     steps {
+        //         script {
+        //             withCredentials([usernamePassword(credentialsId: 'docker-hub-credentials', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
+        //                 bat '''
+        //                 echo Logging in...
+        //                 echo %DOCKER_PASS% | docker login -u %DOCKER_USER% --password-stdin
+        //                 '''
+        //             }
+        //         }
+        //     }
+        // }
         stage('Deploy to Minikube') {
             steps {
                 echo "Deploying application to Minikube..."
