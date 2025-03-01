@@ -2,6 +2,8 @@ pipeline {
     agent any
     environment {
         DOCKER_IMAGE = "rishu28/nitt-exchange-hub"
+        DOCKER_USERNAME = credentials('docker-hub-credentials').USR
+        DOCKER_PASSWORD = credentials('docker-hub-credentials').PSW
     }
     stages {
         stage('Checkout Code') {
@@ -26,13 +28,10 @@ pipeline {
         }
         stage('Login to Docker Hub') {
             steps {
-                script {
-                    withCredentials([usernamePassword(credentialsId: 'docker-hub-credentials', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
-                        bat '''
-                        echo %DOCKER_PASS% | docker login -u %DOCKER_USER% --password-stdin --config %USERPROFILE%\.docker
-                        '''
-                    }
-                }
+                bat '''
+                echo Logging in...
+                docker login -u %DOCKER_USERNAME% -p %DOCKER_PASSWORD%
+                '''
             }
         }
         stage('Deploy to Minikube') {
