@@ -4,6 +4,13 @@ pipeline {
         DOCKER_IMAGE = "rishu28/nitt-exchange-hub"
     }
     stages {
+        stage('Start Minikube') {
+            steps {
+                echo "Starting Minikube..."
+                bat "minikube start"
+                echo "Minikube started successfully!"
+            }
+        }
         stage('Checkout Code') {
             steps {
                 echo "Checking out code from GitHub..."
@@ -30,6 +37,13 @@ pipeline {
                 bat "kubectl apply -f ${env.WORKSPACE}\\deployment.yaml"
                 // bat "kubectl apply -f ${env.WORKSPACE}\service.yaml"
                 echo "Deployment successful!"
+            }
+        }
+        stage('Port Forwarding') {
+            steps {
+                echo "Starting port forwarding..."
+                bat "start /B kubectl port-forward svc/nitt-exchange-hub-service 80:80"
+                echo "Port forwarding started!"
             }
         }
     }
