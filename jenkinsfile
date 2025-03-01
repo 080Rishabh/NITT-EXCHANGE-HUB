@@ -24,13 +24,11 @@ pipeline {
                 echo "Docker image built successfully!"
             }
         }
-        stage('Login to Docker Hub') {
+        stage('Debug Credentials') {
             steps {
                 script {
                     withCredentials([usernamePassword(credentialsId: 'docker-hub-credentials', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
-                        powershell '''
-                        echo $env:DOCKER_PASS | docker login -u $env:DOCKER_USER --password-stdin
-                        '''
+                        bat 'echo "Username: %DOCKER_USER%"'  // This should print "Username: rishu28"
                     }
                 }
             }
