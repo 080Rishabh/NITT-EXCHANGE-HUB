@@ -2,8 +2,6 @@ pipeline {
     agent any
     environment {
         DOCKER_IMAGE = "rishu28/nitt-exchange-hub"
-        DOCKER_USERNAME = credentials('docker-hub-credentials').USR
-        DOCKER_PASSWORD = credentials('docker-hub-credentials').PSW
     }
     stages {
         stage('Checkout Code') {
