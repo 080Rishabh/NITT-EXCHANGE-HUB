@@ -28,10 +28,14 @@ pipeline {
         }
         stage('Login to Docker Hub') {
             steps {
-                bat '''
-                echo Logging in...
-                docker login -u %DOCKER_USERNAME% -p %DOCKER_PASSWORD%
-                '''
+                script {
+                    withCredentials([usernamePassword(credentialsId: 'docker-hub-credentials', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
+                        bat '''
+                        echo Logging in...
+                        echo %DOCKER_PASS% | docker login -u %DOCKER_USER% --password-stdin
+                        '''
+                    }
+                }
             }
         }
         stage('Deploy to Minikube') {
