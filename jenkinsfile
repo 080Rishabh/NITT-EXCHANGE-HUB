@@ -30,7 +30,7 @@ pipeline {
                     withCredentials([usernamePassword(credentialsId: 'docker-hub-credentials', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
                         bat '''
                         echo Username: %DOCKER_USER%
-                        echo Password Length: %DOCKER_PASS%
+                        echo Password Length: %DOCKER_PASS:~0,3%*****
                         '''
                     }
                 }
