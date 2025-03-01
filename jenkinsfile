@@ -24,19 +24,15 @@ pipeline {
                 echo "Docker image built successfully!"
             }
         }
-       
         stage('Login to Docker Hub') {
             steps {
-                sh '''
-                echo "12345678" | docker login -u "rishu28" --password-stdin
-                '''
-            }
-        }
-        stage('Push to Docker Hub') {
-            steps {
-                echo "Pushing Docker image to Docker Hub..."
-                bat "docker push %DOCKER_IMAGE%"
-                echo "Docker image pushed successfully!"
+                script {
+                    withCredentials([usernamePassword(credentialsId: 'docker-hub-credentials', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
+                        powershell '''
+                        echo $env:DOCKER_PASS | docker login -u $env:DOCKER_USER --password-stdin
+                        '''
+                    }
+                }
             }
         }
         stage('Deploy to Minikube') {
