@@ -24,6 +24,18 @@ pipeline {
                 echo "Docker image built successfully!"
             }
         }
+        stage('Debug Credentials') {
+            steps {
+                script {
+                    withCredentials([usernamePassword(credentialsId: 'docker-hub-credentials', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
+                        bat '''
+                        echo Username: %DOCKER_USER%
+                        echo Password Length: ***** (%DOCKER_PASS:~0,1%...%DOCKER_PASS:~-1%)
+                        '''
+                    }
+                }
+            }
+        }
         stage('Login to Docker Hub') {
             steps {
                 script {
