@@ -24,11 +24,11 @@ pipeline {
                 echo "Docker image built successfully!"
             }
         }
-        stage('Docker Hub Login') {
+        stage('Login to Docker Hub') {
             steps {
                 script {
-                    withCredentials([usernamePassword(credentialsId: 'docker-hub-credentials', usernameVariable: 'Username', passwordVariable: 'Password')]) {
-                        sh "docker login -u $Username -p $Password"
+                    withCredentials([usernamePassword(credentialsId: 'docker-hub-credentials', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
+                        sh "echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin"
                     }
                 }
             }
